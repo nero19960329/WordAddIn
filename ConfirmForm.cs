@@ -48,6 +48,7 @@ namespace WordAddIn
 
         private void Print()
         {
+            MessageBox.Show("" + WordApp.ActiveDocument.PageSetup.BookFoldPrintingSheets + ", " + WordApp.ActiveDocument.PageSetup.BookFoldPrinting);
             myThisAddIn.FreePrintFlag = 0;
             WordApp.ActiveDocument.PrintOut();                                             //打印
             myThisAddIn.FreePrintFlag = 1;
@@ -74,9 +75,9 @@ namespace WordAddIn
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
+            Print();
             closeFlag = false;
             Close();
-            Print();
         }
 
         private void skinButton2_Click(object sender, EventArgs e)

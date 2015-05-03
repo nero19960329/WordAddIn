@@ -89,7 +89,7 @@ namespace WordAddIn
 
             myThisAddIn.FreePrintFlag = -1;
             ConfirmForm myConfirmForm = new ConfirmForm(myThisAddIn, WordApp, FileName);
-            myConfirmForm.ShowDialog();
+            myConfirmForm.Show();
         }
 
         protected override CreateParams CreateParams
