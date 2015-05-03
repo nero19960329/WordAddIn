@@ -59,6 +59,7 @@
             this.skinButton1.TabIndex = 5;
             this.skinButton1.Text = "是，我要免费打印";
             this.skinButton1.UseVisualStyleBackColor = false;
+            this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
             // skinButton2
             // 
@@ -74,6 +75,7 @@
             this.skinButton2.TabIndex = 6;
             this.skinButton2.Text = "不，我想打印原版文档";
             this.skinButton2.UseVisualStyleBackColor = false;
+            this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
             // ConfirmForm
             // 

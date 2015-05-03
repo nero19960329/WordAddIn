@@ -95,5 +95,29 @@ namespace WordAddIn
                 }
             }
         }
+
+        private void skinButton1_Click(object sender, EventArgs e)
+        {
+            Print();
+            closeFlag = false;
+            Close();
+        }
+
+        private void skinButton2_Click(object sender, EventArgs e)
+        {
+            myThisAddIn.FreePrintFlag = 0;
+            object oMissing = System.Reflection.Missing.Value;
+            Word.Document OldDocument = WordApp.ActiveDocument;
+            WordApp.Documents.Open(ref FileName,
+                 ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
+             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
+             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing);  //新的程序打开原文档
+            OldDocument.Save();
+            OldDocument.Close();                                                //旧文档关闭
+            WordApp.ActiveDocument.PrintOut();
+            myThisAddIn.FreePrintFlag = 1;
+            closeFlag = false;
+            Close();
+        }
     }
 }
