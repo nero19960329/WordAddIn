@@ -36,13 +36,6 @@ namespace WordAddIn
             closeFlag = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Print();
-            closeFlag = false;
-            Close();
-        }
-
         private void OpenNewApplication(Word.Document OldDocument)
         {
             object oMissing = System.Reflection.Missing.Value;
@@ -60,23 +53,6 @@ namespace WordAddIn
             myThisAddIn.FreePrintFlag = 1;
             Thread.Sleep(1000);                                                 //给一些打印时间
             OpenNewApplication(WordApp.ActiveDocument);                                              //旧文档关闭
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            myThisAddIn.FreePrintFlag = 0;
-            object oMissing = System.Reflection.Missing.Value;
-            Word.Document OldDocument = WordApp.ActiveDocument;
-            WordApp.Documents.Open(ref FileName,
-                 ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing);  //新的程序打开原文档
-            OldDocument.Save();
-            OldDocument.Close();                                                //旧文档关闭
-            WordApp.ActiveDocument.PrintOut();
-            myThisAddIn.FreePrintFlag = 1;
-            closeFlag = false;
-            Close();
         }
 
         private void ConfirmForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -98,9 +74,9 @@ namespace WordAddIn
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            Print();
             closeFlag = false;
             Close();
+            Print();
         }
 
         private void skinButton2_Click(object sender, EventArgs e)

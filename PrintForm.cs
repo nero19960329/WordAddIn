@@ -36,20 +36,6 @@ namespace WordAddIn
             Done = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
-            Logic();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            myThisAddIn.FreePrintFlag = 0;
-            myThisAddIn.Application.ActiveDocument.PrintOut();
-            myThisAddIn.FreePrintFlag = 1;
-            Close();
-        }
-
         public void SetPageHeaderAndFooter(string pPageHeader, string pPageFooter)
         {
             Object oMissing = System.Reflection.Missing.Value;
