@@ -12,3 +12,4 @@ F:\study\大学\大二下\项目\WordAddIn\WordAddIn\obj\Debug\WordAddIn.pdb
 F:\study\大学\大二下\项目\WordAddIn\WordAddIn\bin\Debug\CSkin.dll
 F:\study\大学\大二下\项目\WordAddIn\WordAddIn\obj\Debug\WordAddIn.WaitForm.resources
 F:\study\大学\大二下\项目\WordAddIn\WordAddIn\obj\Debug\WordAddIn.csprojResolveAssemblyReference.cache
+F:\study\大学\大二下\项目\WordAddIn\WordAddIn\obj\Debug\WordAddIn.CopiesForm.resources

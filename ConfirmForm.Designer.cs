@@ -103,7 +103,6 @@
             this.ShowDrawIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "提示";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConfirmForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

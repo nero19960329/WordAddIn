@@ -13,6 +13,7 @@ using Word = Microsoft.Office.Interop.Word;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using CCWin;
+using System.Drawing.Printing;
 
 
 namespace WordAddIn
@@ -90,16 +91,6 @@ namespace WordAddIn
             myThisAddIn.FreePrintFlag = -1;
             ConfirmForm myConfirmForm = new ConfirmForm(myThisAddIn, WordApp, FileName);
             myConfirmForm.Show();
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ClassStyle |= 0x00020000;
-                return cp;
-            }
         }
 
         private void PrintForm_Paint(object sender, PaintEventArgs e)

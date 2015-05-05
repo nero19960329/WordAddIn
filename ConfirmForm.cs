@@ -20,7 +20,6 @@ namespace WordAddIn
         ThisAddIn myThisAddIn;
         Word.Application WordApp;
         object FileName;
-        bool closeFlag;             //true代表是用户点击了窗体的x键关闭的，否则是点击其他按键之后自动关闭的
 
         public ConfirmForm()
         {
@@ -33,50 +32,12 @@ namespace WordAddIn
             this.myThisAddIn = myThisAddIn;
             this.WordApp = WordApp;
             this.FileName = FileName;
-            closeFlag = true;
-        }
-
-        private void OpenNewApplication(Word.Document OldDocument)
-        {
-            object oMissing = System.Reflection.Missing.Value;
-            WordApp.Documents.Open(ref FileName,
-               ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-               ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-               ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing);  //新的程序打开原文档
-            OldDocument.Close();  
-        }
-
-        private void Print()
-        {
-            MessageBox.Show("" + WordApp.ActiveDocument.PageSetup.BookFoldPrintingSheets + ", " + WordApp.ActiveDocument.PageSetup.BookFoldPrinting);
-            myThisAddIn.FreePrintFlag = 0;
-            WordApp.ActiveDocument.PrintOut();                                             //打印
-            myThisAddIn.FreePrintFlag = 1;
-            Thread.Sleep(1000);                                                 //给一些打印时间
-            OpenNewApplication(WordApp.ActiveDocument);                                              //旧文档关闭
-        }
-
-        private void ConfirmForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                if(closeFlag == true)
-                {
-                    myThisAddIn.FreePrintFlag = 1;
-                    WordApp.ActiveDocument.Save();
-                    OpenNewApplication(WordApp.ActiveDocument);                       //旧文档关闭
-                }
-                if(File.Exists(myThisAddIn.TempFilePath))             //删除临时文件
-                {
-                    File.Delete(myThisAddIn.TempFilePath);
-                }
-            }
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
         {
-            Print();
-            closeFlag = false;
+            CopiesForm myCopiesForm = new CopiesForm(myThisAddIn, WordApp, FileName);
+            myCopiesForm.ShowDialog();
             Close();
         }
 
@@ -93,7 +54,6 @@ namespace WordAddIn
             OldDocument.Close();                                                //旧文档关闭
             WordApp.ActiveDocument.PrintOut();
             myThisAddIn.FreePrintFlag = 1;
-            closeFlag = false;
             Close();
         }
     }

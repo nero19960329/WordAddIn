@@ -190,6 +190,12 @@
     <Compile Include="ConfirmForm.Designer.cs">
       <DependentUpon>ConfirmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CopiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopiesForm.Designer.cs">
+      <DependentUpon>CopiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHelper.cs" />
     <Compile Include="PrintForm.cs">
       <SubType>Form</SubType>
@@ -208,6 +214,9 @@
     </Compile>
     <EmbeddedResource Include="ConfirmForm.resx">
       <DependentUpon>ConfirmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CopiesForm.resx">
+      <DependentUpon>CopiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintForm.resx">
       <DependentUpon>PrintForm.cs</DependentUpon>
