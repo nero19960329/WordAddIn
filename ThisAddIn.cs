@@ -26,13 +26,12 @@ namespace WordAddIn
 
         private void Application_DocumentBeforePrint(Word.Document Doc, ref bool Cancel)
         {
-            object oMissing = System.Reflection.Missing.Value;
-            int pages = this.Application.ActiveDocument.ComputeStatistics(Word.WdStatistic.wdStatisticPages, oMissing); //统计页数
+            int pages = this.Application.ActiveDocument.ComputeStatistics(Word.WdStatistic.wdStatisticPages, Tools.oMissing); //统计页数
             if(pages >= 15 && FreePrintFlag != -1)                              //大于等于15页就不显示提示框
             {
                 FreePrintFlag = 0;
             }
-            this.Application.ActiveDocument.Save();     //存档
+            Application.ActiveDocument.Save();     //存档
             if (FreePrintFlag == 1)
             {
                 Cancel = true;

@@ -19,7 +19,10 @@ namespace WordAddIn
     {
         ThisAddIn myThisAddIn;
         Word.Application WordApp;
+        Word.Document OldDocument;
         object FileName;
+        bool isCancelFlag;              //判断用户在退出该窗体时是否是通过点击“否”而退出的
+        Thread ClosePrintPreviewThread;
 
         public ConfirmForm()
         {
@@ -32,6 +35,10 @@ namespace WordAddIn
             this.myThisAddIn = myThisAddIn;
             this.WordApp = WordApp;
             this.FileName = FileName;
+            OldDocument = WordApp.ActiveDocument;
+            isCancelFlag = false;
+            ClosePrintPreviewThread = new Thread(new ThreadStart(ClosePrintPreviewListener));
+            ClosePrintPreviewThread.Start();
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
@@ -43,18 +50,46 @@ namespace WordAddIn
 
         private void skinButton2_Click(object sender, EventArgs e)
         {
-            myThisAddIn.FreePrintFlag = 0;
-            object oMissing = System.Reflection.Missing.Value;
-            Word.Document OldDocument = WordApp.ActiveDocument;
-            WordApp.Documents.Open(ref FileName,
-                 ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-             ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing);  //新的程序打开原文档
-            OldDocument.Save();
-            OldDocument.Close();                                                //旧文档关闭
-            WordApp.ActiveDocument.PrintOut();
-            myThisAddIn.FreePrintFlag = 1;
+            isCancelFlag = true;
             Close();
+        }
+
+        private void ConfirmForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                ClosePrintPreviewThread.Abort();
+                myThisAddIn.FreePrintFlag = 1;
+                Tools.SetFileReadOnly(myThisAddIn.TempFilePath, false);
+                OldDocument.Save();
+                OldDocument.ClosePrintPreview();
+                OldDocument.Close();
+                Tools.OpenNewApplication(WordApp, FileName);
+
+                if(isCancelFlag == true)
+                {
+                    myThisAddIn.FreePrintFlag = 0;
+                    WordApp.ActiveDocument.PrintOut();
+                    myThisAddIn.FreePrintFlag = 1;
+                }
+
+                if(File.Exists(myThisAddIn.TempFilePath))                              //删除临时文件
+                {
+                    File.Delete(myThisAddIn.TempFilePath);
+                }
+            }
+        }
+
+        public void ClosePrintPreviewListener()
+        {
+            while (true)
+            {
+                if (WordApp.PrintPreview == false)
+                {
+                    WordApp.PrintPreview = true;
+                }
+                Thread.Sleep(100);
+            }
         }
     }
 }

@@ -108,7 +108,6 @@
             this.Special = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "请输入份数";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CopiesForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.skinNumericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

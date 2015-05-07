@@ -79,6 +79,7 @@ namespace WordAddIn
 
             OldDocument.Save();                                                             //旧文档存储
             OldDocument.SaveAs(myThisAddIn.TempFilePath);                                   //另存为一个临时文件
+            Tools.SetFileReadOnly(myThisAddIn.TempFilePath, true);
 
             WordApp.Visible = false;
             WaitForm myWaitForm = new WaitForm();
@@ -86,16 +87,14 @@ namespace WordAddIn
             SetPageHeaderAndFooter("F:\\pics\\a1.jpg", "F:\\pics\\b1.jpg");                 //加入页眉页脚
             Thread.Sleep(1000);
             myWaitForm.Close();
+            OldDocument.PrintPreview();
+            OldDocument.Protect(Word.WdProtectionType.wdAllowOnlyFormFields, ref Tools.oMissing, ref Tools.oMissing);
+            //WordApp.PrintPreview = true;
             WordApp.Visible = true;
 
             myThisAddIn.FreePrintFlag = -1;
             ConfirmForm myConfirmForm = new ConfirmForm(myThisAddIn, WordApp, FileName);
             myConfirmForm.Show();
-        }
-
-        private void PrintForm_Paint(object sender, PaintEventArgs e)
-        {
-            FormHelper.SetWindowRegion(this);
         }
 
         private void skinButton1_Click(object sender, EventArgs e)

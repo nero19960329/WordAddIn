@@ -115,7 +115,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "提示";
             this.TopMost = true;
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.PrintForm_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

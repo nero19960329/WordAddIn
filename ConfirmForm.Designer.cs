@@ -83,7 +83,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WordAddIn.Properties.Resources.background_3;
             this.CanResize = false;
-            this.ClientSize = new System.Drawing.Size(264, 183);
+            this.ClientSize = new System.Drawing.Size(268, 178);
             this.CloseBoxSize = new System.Drawing.Size(30, 30);
             this.CloseDownBack = global::WordAddIn.Properties.Resources.sysbtn_close_down;
             this.CloseMouseBack = global::WordAddIn.Properties.Resources.sysbtn_close_hover;
@@ -103,6 +103,7 @@
             this.ShowDrawIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "提示";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConfirmForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

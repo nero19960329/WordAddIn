@@ -35,7 +35,7 @@
     <PublishUrl>C:\Users\Administrator\Desktop\test\</PublishUrl>
     <InstallUrl />
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.0.7</ApplicationVersion>
+    <ApplicationVersion>1.0.0.8</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -196,7 +196,6 @@
     <Compile Include="CopiesForm.Designer.cs">
       <DependentUpon>CopiesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHelper.cs" />
     <Compile Include="PrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +205,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tools.cs" />
     <Compile Include="WaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
