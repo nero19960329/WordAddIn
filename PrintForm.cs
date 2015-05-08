@@ -65,6 +65,7 @@ namespace WordAddIn
 
             Word.Document OldDocument = WordApp.ActiveDocument;
             object FileName = OldDocument.Path + "\\" + OldDocument.Name;
+            myThisAddIn.pages = OldDocument.ComputeStatistics(Word.WdStatistic.wdStatisticPages, Tools.oMissing); //统计加入页眉页脚之前的页数
             myThisAddIn.TempFilePath = OldDocument.Path + "\\" + "temp";
 
             Random random = new Random();

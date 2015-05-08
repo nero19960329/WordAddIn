@@ -14,6 +14,7 @@ namespace WordAddIn
         private PrintForm myPrintForm;
         public int FreePrintFlag;     //1代表会弹出对话框,0则不会弹出但会打印原版文档,-1代表不会弹对话框也不会打印任何东西
         public string TempFilePath;
+        public int pages;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -26,12 +27,14 @@ namespace WordAddIn
 
         private void Application_DocumentBeforePrint(Word.Document Doc, ref bool Cancel)
         {
-            int pages = this.Application.ActiveDocument.ComputeStatistics(Word.WdStatistic.wdStatisticPages, Tools.oMissing); //统计页数
             if(pages >= 15 && FreePrintFlag != -1)                              //大于等于15页就不显示提示框
             {
                 FreePrintFlag = 0;
             }
-            Application.ActiveDocument.Save();     //存档
+            if(Application.ActiveDocument.ProtectionType == Word.WdProtectionType.wdNoProtection)
+            {
+                Application.ActiveDocument.Save();     //存档
+            }
             if (FreePrintFlag == 1)
             {
                 Cancel = true;

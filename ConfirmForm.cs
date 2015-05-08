@@ -91,5 +91,10 @@ namespace WordAddIn
                 Thread.Sleep(100);
             }
         }
+
+        private void skinButton3_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

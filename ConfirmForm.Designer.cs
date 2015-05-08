@@ -31,6 +31,7 @@
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
+            this.skinButton3 = new CCWin.SkinControl.SkinButton();
             this.SuspendLayout();
             // 
             // skinLabel1
@@ -77,18 +78,35 @@
             this.skinButton2.UseVisualStyleBackColor = false;
             this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
+            // skinButton3
+            // 
+            this.skinButton3.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton3.DownBack = global::WordAddIn.Properties.Resources._01124_149x42x4BPP_;
+            this.skinButton3.DrawType = CCWin.SkinControl.DrawStyle.Img;
+            this.skinButton3.Location = new System.Drawing.Point(59, 176);
+            this.skinButton3.MouseBack = global::WordAddIn.Properties.Resources._01125_149x42x4BPP_;
+            this.skinButton3.Name = "skinButton3";
+            this.skinButton3.NormlBack = global::WordAddIn.Properties.Resources._01126_149x42x4BPP_;
+            this.skinButton3.Size = new System.Drawing.Size(149, 23);
+            this.skinButton3.TabIndex = 7;
+            this.skinButton3.Text = "返回原文档编辑";
+            this.skinButton3.UseVisualStyleBackColor = false;
+            this.skinButton3.Click += new System.EventHandler(this.skinButton3_Click);
+            // 
             // ConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WordAddIn.Properties.Resources.background_3;
             this.CanResize = false;
-            this.ClientSize = new System.Drawing.Size(268, 178);
+            this.ClientSize = new System.Drawing.Size(268, 332);
             this.CloseBoxSize = new System.Drawing.Size(30, 30);
             this.CloseDownBack = global::WordAddIn.Properties.Resources.sysbtn_close_down;
             this.CloseMouseBack = global::WordAddIn.Properties.Resources.sysbtn_close_hover;
             this.CloseNormlBack = global::WordAddIn.Properties.Resources.sysbtn_close_normal;
             this.ControlBoxOffset = new System.Drawing.Point(0, 0);
+            this.Controls.Add(this.skinButton3);
             this.Controls.Add(this.skinButton2);
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.skinLabel1);
@@ -114,5 +132,6 @@
         private CCWin.SkinControl.SkinLabel skinLabel1;
         private CCWin.SkinControl.SkinButton skinButton1;
         private CCWin.SkinControl.SkinButton skinButton2;
+        private CCWin.SkinControl.SkinButton skinButton3;
     }
 }
